@@ -1,10 +1,105 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="es">
 <head>
-    <title>Mi primera página</title>
+<meta charset="UTF-8">
+<title>Para Ti ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    text-align: center;
+    color: #333;
+}
+
+.container {
+    padding: 50px;
+}
+
+h1 {
+    font-size: 3em;
+    color: #fff;
+}
+
+h2 {
+    color: #ff4b5c;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px auto;
+    max-width: 500px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+button {
+    background: #ff4b5c;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #ff1e3c;
+}
+
+#mensaje {
+    display: none;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #ff1e3c;
+}
+</style>
+
 </head>
+
 <body>
-    <h1>Hola mundo 🌎</h1>
-    <p>Mi página ya está en internet 🚀</p>
+
+<div class="container">
+    <h1>Para Ti ❤️</h1>
+
+```
+<div class="card">
+    <p>Hoy cumplimos 5 meses juntos 💕</p>
+    <p>Gracias por hacer mi vida más feliz cada día.</p>
+</div>
+
+<div class="card">
+    <h2>Un mensaje para ti 💌</h2>
+    <p>
+        Desde que llegaste a mi vida, todo es mejor.<br>
+        Cada momento contigo es especial y no cambiaría nada de lo que hemos vivido.<br>
+        Te quiero muchísimo ❤️
+    </p>
+</div>
+
+<div class="card">
+    <h2>Sorpresa 🎁</h2>
+    <button onclick="mostrarMensaje()">Haz clic aquí</button>
+    <p id="mensaje">
+        Eres lo mejor que me ha pasado ❤️✨
+    </p>
+</div>
+```
+
+</div>
+
+<script>
+function mostrarMensaje() {
+    document.getElementById("mensaje").style.display = "block";
+}
+</script>
+
 </body>
 </html>
