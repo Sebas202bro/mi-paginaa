@@ -29,10 +29,33 @@ body {
     z-index: 10;
 }
 
-#inicio button {
-    padding: 15px 30px;
-    font-size: 1.2em;
-    margin-top: 20px;
+/* GALERÍA */
+.galeria {
+    display: flex;
+    gap: 15px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.foto {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 4px solid white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+    animation: flotarFoto 3s ease-in-out infinite;
+}
+
+.foto:hover {
+    transform: scale(1.2);
+}
+
+@keyframes flotarFoto {
+    0%, 100% {transform: translateY(0);}
+    50% {transform: translateY(-10px);}
 }
 
 /* CONTENIDO */
@@ -98,8 +121,8 @@ button:hover {
     max-height: 500px;
 }
 
-/* MENSAJE SECRETO */
-#secreto {
+/* MENSAJES */
+#secreto, #final {
     display: none;
     color: #2b6cb0;
     font-weight: bold;
@@ -115,12 +138,22 @@ button:hover {
 
 <div id="inicio">
     <h1>💙 Tengo algo especial para ti 💙</h1>
-    <button onclick="entrar()">Entrar</button>
+
+```
+<div class="galeria">
+    <img src="foto1.jpg" class="foto">
+    <img src="foto2.jpg" class="foto">
+    <img src="foto3.jpg" class="foto">
+    <img src="foto4.jpg" class="foto">
+</div>
+
+<button onclick="entrar()">Entrar 💙</button>
+```
+
 </div>
 
 <div class="container" id="contenido">
 
-```
 <h1>Para mi Rizos que me envuelven 💙</h1>
 
 <div class="card">
@@ -132,21 +165,24 @@ button:hover {
     <h2>💌 Un poema para ti</h2>
     <button onclick="abrirCarta()">Abrir carta</button>
 
-    <div id="carta">
-        <p>Rizos bellos que me envuelven todo a mí,<br> 
-            coronas salvajes de un amor sin fin.</p> 
-            <p>Eres mi todo, mi amor, mi vida entera,<br> 
-                en cada curva, mi alma se acelera.</p> 
-                <p>Te amo demasiado, con fuego que no apaga,<br> 
-                    me encantas en la luz, me apasionas en la bruma.</p> 
-                    <p>Cada onda tuya despierta mi ser,<br> 
-                        me haces mejor, me elevas al cielo al nacer.</p> 
-                        <p>Corazón mío, mi refugio, mi pasión ardiente,<br> 
-                            en ti encuentro el mundo, mi luz permanente.</p> 
-                            <p>¡Amor, mi corazón, tus rizos que bailan como olas de mar!<br> 
-                                Por siempre te adoro, mi eterno lugar.</p> 
-                                <p><strong>Ti amo musho musho musho musho 💙</strong></p>
-    </div>
+```
+<div id="carta">
+    <p>Rizos bellos que me envuelven todo a mí,<br> 
+        coronas salvajes de un amor sin fin.</p> 
+    <p>Eres mi todo, mi amor, mi vida entera,<br> 
+        en cada curva, mi alma se acelera.</p> 
+    <p>Te amo demasiado, con fuego que no apaga,<br> 
+        me encantas en la luz, me apasionas en la bruma.</p> 
+    <p>Cada onda tuya despierta mi ser,<br> 
+        me haces mejor, me elevas al cielo al nacer.</p> 
+    <p>Corazón mío, mi refugio, mi pasión ardiente,<br> 
+        en ti encuentro el mundo, mi luz permanente.</p> 
+    <p>¡Amor, mi corazón, tus rizos que bailan como olas de mar!<br> 
+        Por siempre te adoro, mi eterno lugar.</p> 
+    <p><strong>Ti amo musho musho musho musho 💙</strong></p>
+</div>
+```
+
 </div>
 
 <div class="card">
@@ -155,7 +191,10 @@ button:hover {
     <br><br>
     <button onclick="verificar()">Ver</button>
 
-    <div id="secreto">Eres y siempre serás mi persona favorita, te amo</div>
+```
+<div id="secreto">Eres y siempre serás mi persona favorita, te amo</div>
+```
+
 </div>
 
 <div class="card">
@@ -166,13 +205,12 @@ button:hover {
 
 <div class="card">
     <h2>🎵 Nuestras canciones 💙</h2>
-    <button onclick="ponerMusica('TDVlDUAIz5k')">Heaven Can Wait</button>
+    <button onclick="ponerMusica('qOKBwd_SORU')">Heaven Can Wait</button>
     <button onclick="ponerMusica('MldGX_mbS-o')">M.A.I</button>
     <button onclick="ponerMusica('hfABkoRgNRg')">Carencias</button>
     <button onclick="ponerMusica('W7z886y7Ro0')">Eres Tú</button>
     <button onclick="ponerMusica('XrNBhf0ZxgU')">Mujer de Rizos</button>
 </div>
-```
 
 </div>
 
@@ -181,21 +219,17 @@ button:hover {
 <iframe id="musicaYT" width="0" height="0" frameborder="0" allow="autoplay"></iframe>
 
 <script>
-// ENTRAR
 function entrar() {
     document.getElementById("inicio").style.display = "none";
     document.getElementById("contenido").style.display = "block";
 }
 
-// CARTA
 function abrirCarta() {
     document.getElementById("carta").classList.toggle("abierta");
 }
 
-// CONTRASEÑA
 function verificar() {
     const clave = document.getElementById("clave").value;
-
     if (clave === "rizos") {
         document.getElementById("secreto").style.display = "block";
     } else {
@@ -203,19 +237,16 @@ function verificar() {
     }
 }
 
-// MÚSICA
 function ponerMusica(id) {
     document.getElementById("musicaYT").src =
     "https://www.youtube.com/embed/" + id + "?autoplay=1";
 }
 
-// SORPRESA
 function sorpresa() {
     document.getElementById("final").style.display = "block";
     ponerMusica('qOKBwd_SORU');
 }
 
-// CORAZONES
 function crearCorazon() {
     const c = document.createElement("div");
     c.classList.add("corazon");
@@ -223,7 +254,6 @@ function crearCorazon() {
     c.style.left = Math.random() * 100 + "vw";
     c.style.fontSize = (Math.random() * 20 + 10) + "px";
     document.body.appendChild(c);
-
     setTimeout(() => c.remove(), 5000);
 }
 
