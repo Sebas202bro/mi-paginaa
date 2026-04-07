@@ -15,8 +15,30 @@ body {
     overflow-x: hidden;
 }
 
+/* PANTALLA INICIAL */
+#inicio {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #66a6ff;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 10;
+}
+
+#inicio button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+/* CONTENIDO */
 .container {
     padding: 50px;
+    display: none;
 }
 
 h1 {
@@ -28,10 +50,6 @@ h2 {
     color: #2b6cb0;
 }
 
-p {
-    font-size: 1.2em;
-}
-
 .card {
     background: white;
     padding: 20px;
@@ -41,6 +59,7 @@ p {
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
+/* BOTONES */
 button {
     background: #2b6cb0;
     color: white;
@@ -60,7 +79,6 @@ button:hover {
     position: fixed;
     bottom: -10px;
     color: rgba(0, 150, 255, 0.7);
-    font-size: 20px;
     animation: flotar 5s linear infinite;
 }
 
@@ -69,18 +87,23 @@ button:hover {
     100% {transform: translateY(-100vh);}
 }
 
-/* MENSAJE FINAL */
-#final {
-    display: none;
-    font-size: 1.5em;
-    color: #2b6cb0;
-    margin-top: 20px;
-    animation: aparecer 1s ease-in-out;
+/* CARTA */
+#carta {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 1s ease;
 }
 
-@keyframes aparecer {
-    from {opacity: 0;}
-    to {opacity: 1;}
+#carta.abierta {
+    max-height: 500px;
+}
+
+/* MENSAJE SECRETO */
+#secreto {
+    display: none;
+    color: #2b6cb0;
+    font-weight: bold;
+    margin-top: 10px;
 }
 </style>
 
@@ -88,50 +111,57 @@ button:hover {
 
 <body>
 
-<div class="container">
-    <h1>Para mi Rizos que me envuelven 💙</h1>
+<!-- PANTALLA INICIAL -->
+
+<div id="inicio">
+    <h1>💙 Tengo algo especial para ti 💙</h1>
+    <button onclick="entrar()">Entrar</button>
+</div>
+
+<div class="container" id="contenido">
 
 ```
+<h1>Para mi Rizos que me envuelven 💙</h1>
+
 <div class="card">
     <p>Hoy cumplimos 5 meses juntos corazón mío 💙</p>
-    <p>Gracias por hacer mi vida más feliz cada día, me encantas demasiado</p>
+    <p>Gracias por hacer mi vida más feliz cada día</p>
 </div>
 
 <div class="card">
-    <h2>Un poema para ti 💌</h2>
+    <h2>💌 Carta para ti</h2>
+    <button onclick="abrirCarta()">Abrir carta</button>
 
-    <p>Rizos bellos que me envuelven todo a mí,<br>
-    coronas salvajes de un amor sin fin.</p>
-
-    <p>Eres mi todo, mi amor, mi vida entera,<br>
-    en cada curva, mi alma se acelera.</p>
-
-    <p>Te amo demasiado, con fuego que no apaga,<br>
-    me encantas en la luz, me apasionas en la bruma.</p>
-
-    <p>Cada onda tuya despierta mi ser,<br>
-    me haces mejor, me elevas al cielo al nacer.</p>
-
-    <p>Corazón mío, mi refugio, mi pasión ardiente,<br>
-    en ti encuentro el mundo, mi luz permanente.</p>
-
-    <p>¡Amor, mi corazón, tus rizos que bailan como olas de mar!<br>
-    Por siempre te adoro, mi eterno lugar.</p>
-
-    <p><strong>Ti amo musho musho musho musho 💙</strong></p>
+    <div id="carta">
+        <p>
+        Desde que llegaste a mi vida, todo cambió.<br><br>
+        No hay un solo día en el que no piense en ti.<br><br>
+        Eres mi paz, mi alegría y mi lugar favorito 💙<br><br>
+        Gracias por existir, mi amor.
+        </p>
+    </div>
 </div>
 
 <div class="card">
-    <h2>Sorpresa yeiii 🎁</h2>
+    <h2>🔐 Mensaje secreto</h2>
+    <input type="password" id="clave" placeholder="Ingresa la contraseña">
+    <br><br>
+    <button onclick="verificar()">Ver</button>
+
+    <div id="secreto">💙 Eres el amor de mi vida 💙</div>
+</div>
+
+<div class="card">
+    <h2>🎁 Sorpresa</h2>
     <button onclick="sorpresa()">Haz clic aquí 💙</button>
     <div id="final">💙 Eres mi lugar favorito en el mundo 💙</div>
 </div>
 
 <div class="card">
     <h2>🎵 Nuestras canciones 💙</h2>
-    <button onclick="ponerMusica('rJu7OF44HSKJ9GJF')">Heaven Can Wait</button>
-    <button onclick="ponerMusica('MldGX_mbS-o')">M.A.I - Milo J</button>
-    <button onclick="ponerMusica('hfABkoRgNRg')">Carencias de Cordura</button>
+    <button onclick="ponerMusica('qOKBwd_SORU')">Heaven Can Wait</button>
+    <button onclick="ponerMusica('MldGX_mbS-o')">M.A.I</button>
+    <button onclick="ponerMusica('hfABkoRgNRg')">Carencias</button>
     <button onclick="ponerMusica('W7z886y7Ro0')">Eres Tú</button>
     <button onclick="ponerMusica('XrNBhf0ZxgU')">Mujer de Rizos</button>
 </div>
@@ -139,37 +169,55 @@ button:hover {
 
 </div>
 
-<!-- YOUTUBE INVISIBLE -->
+<!-- YOUTUBE -->
 
-<iframe id="musicaYT" width="0" height="0"
-frameborder="0" allow="autoplay">
-</iframe>
+<iframe id="musicaYT" width="0" height="0" frameborder="0" allow="autoplay"></iframe>
 
 <script>
-// BOTÓN SORPRESA
-function sorpresa() {
-    document.getElementById("final").style.display = "block";
-    ponerMusica('qOKBwd_SORU');
+// ENTRAR
+function entrar() {
+    document.getElementById("inicio").style.display = "none";
+    document.getElementById("contenido").style.display = "block";
 }
 
-// CAMBIAR MÚSICA
+// CARTA
+function abrirCarta() {
+    document.getElementById("carta").classList.toggle("abierta");
+}
+
+// CONTRASEÑA
+function verificar() {
+    const clave = document.getElementById("clave").value;
+
+    if (clave === "rizos") {
+        document.getElementById("secreto").style.display = "block";
+    } else {
+        alert("Contraseña incorrecta 💔");
+    }
+}
+
+// MÚSICA
 function ponerMusica(id) {
     document.getElementById("musicaYT").src =
     "https://www.youtube.com/embed/" + id + "?autoplay=1";
 }
 
+// SORPRESA
+function sorpresa() {
+    document.getElementById("final").style.display = "block";
+    ponerMusica('qOKBwd_SORU');
+}
+
 // CORAZONES
 function crearCorazon() {
-    const corazon = document.createElement("div");
-    corazon.classList.add("corazon");
-    corazon.innerText = "💙";
-    corazon.style.left = Math.random() * 100 + "vw";
-    corazon.style.fontSize = (Math.random() * 20 + 10) + "px";
-    document.body.appendChild(corazon);
+    const c = document.createElement("div");
+    c.classList.add("corazon");
+    c.innerText = "💙";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.fontSize = (Math.random() * 20 + 10) + "px";
+    document.body.appendChild(c);
 
-    setTimeout(() => {
-        corazon.remove();
-    }, 5000);
+    setTimeout(() => c.remove(), 5000);
 }
 
 setInterval(crearCorazon, 300);
